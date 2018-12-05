@@ -45,7 +45,7 @@ void DeleteBookForm::on_ensure_btn_clicked()
         }
     }
     else
-        QMessageBox::warning(this, tr("错误"), tr("没有这个书号，不能删除！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("没有这个书号，不能删除！"));
 }
 
 

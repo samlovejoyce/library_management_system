@@ -1,4 +1,4 @@
-#include "delete_ensure_form.h"
+﻿#include "delete_ensure_form.h"
 #include "ui_delete_ensure_form.h"
 #include <QMessageBox>
 
@@ -8,7 +8,7 @@ DeleteEnsureForm::DeleteEnsureForm(QWidget *parent) :
     ui(new Ui::DeleteEnsureForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("删除确认界面");
+    this->setWindowTitle(QString::fromLocal8Bit("删除确认界面"));
 }
 
 
@@ -20,7 +20,7 @@ DeleteEnsureForm::~DeleteEnsureForm()
 
 void DeleteEnsureForm::on_yes_btn_clicked()
 {
-    QMessageBox::information(this, tr("信息"), tr("删除信息成功！"));
+    QMessageBox::information(this, QString::fromLocal8Bit("信息"), QString::fromLocal8Bit("删除信息成功！"));
     this->close();
 }
 

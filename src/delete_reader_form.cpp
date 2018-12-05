@@ -1,4 +1,4 @@
-#include "delete_reader_form.h"
+﻿#include "delete_reader_form.h"
 #include "ui_delete_reader_form.h"
 #include "delete_ensure_form.h"
 #include <QMessageBox>
@@ -12,7 +12,7 @@ DeleteReaderForm::DeleteReaderForm(QWidget *parent) :
     ui(new Ui::DeleteReaderForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("删除读者界面");
+    this->setWindowTitle(QString::fromLocal8Bit("删除读者界面"));
 }
 
 
@@ -45,7 +45,7 @@ void DeleteReaderForm::on_ensure_btn_clicked()
         }
     }
     else
-        QMessageBox::warning(this, tr("错误"), tr("没有这个读者号，不能删除！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("没有这个读者号，不能删除！"));
 }
 
 

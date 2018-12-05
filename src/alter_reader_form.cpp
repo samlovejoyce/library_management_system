@@ -1,4 +1,4 @@
-#include "alter_reader_form.h"
+﻿#include "alter_reader_form.h"
 #include "ui_alter_reader_form.h"
 #include <QMessageBox>
 #include <QString>
@@ -10,7 +10,7 @@ AlterReaderForm::AlterReaderForm(QWidget *parent) :
     ui(new Ui::AlterReaderForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("修改读者信息界面");
+    this->setWindowTitle(QString::fromLocal8Bit("修改读者信息界面"));
 }
 
 
@@ -39,7 +39,7 @@ void AlterReaderForm::displayAllInformation(QString data)
         ui->rsex_cbx->setCurrentText(query.value(4).toString());
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("没有有关此读者的相关信息！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没有有关此读者的相关信息！"));
 }
 
 
@@ -72,15 +72,15 @@ void AlterReaderForm::on_ensure_btn_clicked()
 
         if (query.isActive())
         {
-            QMessageBox::information(this, tr("信息"), tr("读者信息修改成功！"));
+            QMessageBox::information(this, QString::fromLocal8Bit("信息"), QString::fromLocal8Bit("读者信息修改成功！"));
             this->close();
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("读者信息修改失败！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者信息修改失败！"));
     }
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("读者账号不能修改！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者账号不能修改！"));
         ui->rno_le->setText(reader_id_global);
     }
 }

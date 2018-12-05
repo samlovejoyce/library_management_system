@@ -1,4 +1,4 @@
-#include "user_register_form.h"
+﻿#include "user_register_form.h"
 #include "ui_user_register_form.h"
 
 #include <QMessageBox>
@@ -11,7 +11,7 @@ UserRegisterForm::UserRegisterForm(QWidget *parent) :
     ui(new Ui::UserRegisterForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("读者注册界面");
+    this->setWindowTitle(QString::fromLocal8Bit("读者注册界面"));
 }
 
 
@@ -38,7 +38,7 @@ void UserRegisterForm::on_yes_btn_clicked()
         reader_name = ui->rname_le->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("用户名不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("用户名不能为空！"));
         return ;
     }
 
@@ -46,7 +46,7 @@ void UserRegisterForm::on_yes_btn_clicked()
         reader_id = ui->rno_le->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("账号不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("账号不能为空！"));
         return ;
     }
 
@@ -54,7 +54,7 @@ void UserRegisterForm::on_yes_btn_clicked()
         reader_pwd = ui->rpwd_le->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("密码不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("密码不能为空！"));
         return ;
     }
 
@@ -62,7 +62,7 @@ void UserRegisterForm::on_yes_btn_clicked()
         reader_pwd_confim = ui->rpwd_confim_le->text().trimmed();
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("确认密码不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("确认密码不能为空！"));
         return ;
     }
 
@@ -71,7 +71,7 @@ void UserRegisterForm::on_yes_btn_clicked()
 
     if (reader_pwd.compare(reader_pwd_confim) != 0)
     {
-        QMessageBox::warning(this, tr("警告"), tr("确认密码与密码不同！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("确认密码与密码不同！"));
         return ;
     }
 
@@ -93,12 +93,12 @@ void UserRegisterForm::on_yes_btn_clicked()
 
         if (query.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("注册成功"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("注册成功"));
             this->close();
         }
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("用户名已经存在！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("用户名已经存在！"));
 }
 
 

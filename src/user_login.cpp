@@ -1,4 +1,4 @@
-#include "user_login.h"
+﻿#include "user_login.h"
 #include "ui_user_login.h"
 #include "user_register_form.h"
 #include "connect_database.h"
@@ -13,7 +13,7 @@ UserLogin::UserLogin(QWidget *parent) :
     ui(new Ui::UserLogin)
 {
     ui->setupUi(this);
-    this->setWindowTitle("用户登录界面");
+    this->setWindowTitle(QString::fromLocal8Bit("用户登录界面"));
 
     admin_counter = 0;
     reader_counter = 0;
@@ -42,12 +42,12 @@ void UserLogin::on_login_btn_clicked()
 
     if (!ConnectDatabase::openDatabase())
     {
-        QMessageBox::warning(this, tr("错误"), tr("打开数据库失败!"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("打开数据库失败!"));
         return ;
     }
     else
     {
-        if (user_type == tr("管理员"))
+        if (user_type == QString::fromLocal8Bit("管理员"))
         {
             query.exec("select * from admin");
             while (query.next())
@@ -72,14 +72,14 @@ void UserLogin::on_login_btn_clicked()
                         }
                         else
                         {
-                            QMessageBox::warning(this, tr("警告"),
-                                                 tr("不能有两个管理员同时在线！"));
+                            QMessageBox::warning(this, QString::fromLocal8Bit("警告"),
+                                                 QString::fromLocal8Bit("不能有两个管理员同时在线！"));
                             return ;
                         }
                     }
             }
         }
-        else if (user_type == tr("读者"))
+        else if (user_type == QString::fromLocal8Bit("读者"))
         {
             query.exec("select * from reader");
             while (query.next())
@@ -104,15 +104,15 @@ void UserLogin::on_login_btn_clicked()
                         }
                         else
                         {
-                            QMessageBox::warning(this, tr("警告"),
-                                                 tr("不能有两个读者同时在线！"));
+                            QMessageBox::warning(this, QString::fromLocal8Bit("警告"),
+                                                 QString::fromLocal8Bit("不能有两个读者同时在线！"));
                             return ;
                         }
                     }
             }
         }
         if (!flag)
-            QMessageBox::warning(this, tr("警告"), tr("用户名或密码错误!"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("用户名或密码错误!"));
     }
 }
 

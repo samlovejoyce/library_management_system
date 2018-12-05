@@ -1,4 +1,4 @@
-#include "admin_form.h"
+﻿#include "admin_form.h"
 #include "ui_admin_form.h"
 #include "user_login.h"
 #include "add_book_form.h"
@@ -27,18 +27,18 @@ AdminForm::AdminForm(QWidget *parent) :
     ui(new Ui::AdminForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("管理员界面");
+    this->setWindowTitle(QString::fromLocal8Bit("管理员界面"));
     ui->admin_tw->setCurrentIndex(0);
 
     book_manage_model = new QSqlTableModel(this);
     book_manage_model->setTable("book");
     book_manage_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    book_manage_model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-    book_manage_model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-    book_manage_model->setHeaderData(2, Qt::Horizontal, tr("图书类别号"));
-    book_manage_model->setHeaderData(3, Qt::Horizontal, tr("出版社"));
-    book_manage_model->setHeaderData(4, Qt::Horizontal, tr("作者"));
-    book_manage_model->setHeaderData(5, Qt::Horizontal, tr("馆藏量"));
+    book_manage_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    book_manage_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+    book_manage_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("图书类别号"));
+    book_manage_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+    book_manage_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+    book_manage_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
     book_manage_model->removeColumn(book_manage_model->fieldIndex("ano"));
     book_manage_model->select();
 
@@ -49,12 +49,12 @@ AdminForm::AdminForm(QWidget *parent) :
     reader_manage_model = new QSqlTableModel(this);
     reader_manage_model->setTable("reader");
     reader_manage_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    reader_manage_model->setHeaderData(0, Qt::Horizontal, tr("读者帐号"));
-    reader_manage_model->setHeaderData(1, Qt::Horizontal, tr("读者姓名"));
-    reader_manage_model->setHeaderData(2, Qt::Horizontal, tr("读者密码"));
-    reader_manage_model->setHeaderData(3, Qt::Horizontal, tr("读者电话"));
-    reader_manage_model->setHeaderData(4, Qt::Horizontal, tr("读者性别"));
-    reader_manage_model->setHeaderData(5, Qt::Horizontal, tr("管理员号"));
+    reader_manage_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("读者帐号"));
+    reader_manage_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("读者姓名"));
+    reader_manage_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("读者密码"));
+    reader_manage_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("读者电话"));
+    reader_manage_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("读者性别"));
+    reader_manage_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("管理员号"));
     reader_manage_model->select();
 
     ui->reader_tw->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -64,12 +64,12 @@ AdminForm::AdminForm(QWidget *parent) :
     borrow_manage_model = new QSqlTableModel(this);
     borrow_manage_model->setTable("borrow");
     borrow_manage_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    borrow_manage_model->setHeaderData(0, Qt::Horizontal, tr("读者帐号"));
-    borrow_manage_model->setHeaderData(1, Qt::Horizontal, tr("图书号"));
-    borrow_manage_model->setHeaderData(2, Qt::Horizontal, tr("借阅日期"));
-    borrow_manage_model->setHeaderData(3, Qt::Horizontal, tr("截止日期"));
-    borrow_manage_model->setHeaderData(4, Qt::Horizontal, tr("归还日期"));
-    borrow_manage_model->setHeaderData(5, Qt::Horizontal, tr("借阅状态"));
+    borrow_manage_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("读者帐号"));
+    borrow_manage_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    borrow_manage_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("借阅日期"));
+    borrow_manage_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("截止日期"));
+    borrow_manage_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("归还日期"));
+    borrow_manage_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("借阅状态"));
     borrow_manage_model->select();
 
     ui->borrow_tv->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -108,20 +108,20 @@ void AdminForm::emptyMap()
 
 void AdminForm::timerUpdateView()
 {
-//    book_manage_model->setFilter(QObject::tr("bno like '%1'").arg("%"));
+//    book_manage_model->setFilter(QString::fromLocal8Bit("bno like '%1'").arg("%"));
 //    book_manage_model->select();
 
-//    reader_manage_model->setFilter(QObject::tr("rno like '%1'").arg("%"));
+//    reader_manage_model->setFilter(QString::fromLocal8Bit("rno like '%1'").arg("%"));
 //    reader_manage_model->select();
 
-    borrow_manage_model->setFilter(QObject::tr("rno like '%1'").arg("%"));
+    borrow_manage_model->setFilter(QString::fromLocal8Bit("rno like '%1'").arg("%"));
     borrow_manage_model->select();
 }
 
 
 void AdminForm::on_dis_all_btn_1_clicked()
 {
-    book_manage_model->setFilter(QObject::tr("bno like '%1'").arg("%"));
+    book_manage_model->setFilter(QString::fromLocal8Bit("bno like '%1'").arg("%"));
     book_manage_model->select();
 }
 
@@ -135,9 +135,9 @@ void AdminForm::on_query_btn_clicked()
     query_type = ui->type_cbx->currentText();
     query_text = ui->query_le->text();
 
-    if (query_type == tr("书名"))
+    if (query_type == QString::fromLocal8Bit("书名"))
         select_text += "bname like'" + query_text + "%'";
-    if (query_type == tr("书号"))
+    if (query_type == QString::fromLocal8Bit("书号"))
         select_text = "bno like'" + query_text + "%'";
 
     book_manage_model->setFilter(select_text);
@@ -236,16 +236,16 @@ void AdminForm::on_b_acc_btn_clicked()
         {
             if (flag == "同意借阅请求" || "同意续借请求")
             {
-                QMessageBox::warning(this, tr("警告"),
-                                     tr("已借书的借阅或续借时间超过最终期限并且未归还，无法借阅新书！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"),
+                                     QString::fromLocal8Bit("已借书的借阅或续借时间超过最终期限并且未归还，无法借阅新书！"));
                 query_delete.exec("delete from borrow where bno = '" + book_id +
                                   "' and rno = '" + reader_id +
                                   "' and flag = '借阅请求'");
 
                 if (query_delete.isActive())
                 {
-                    QMessageBox::information(this, tr("提示"), tr("管理员取消读者借阅权利！"));
-                    borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+                    QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员取消读者借阅权利！"));
+                    borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
                     borrow_manage_model->select();
 
                     query_update.prepare("update book set bnum = :bnum where bno = :bno");
@@ -255,8 +255,8 @@ void AdminForm::on_b_acc_btn_clicked()
 
                     if (query_update.isActive())
                     {
-                        QMessageBox::information(this, tr("提示"), tr("更新图书表成功！"));
-                        book_manage_model->setFilter(QObject::tr("bno like '%'"));
+                        QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("更新图书表成功！"));
+                        book_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
                         book_manage_model->select();
                     }
                 }
@@ -283,15 +283,15 @@ void AdminForm::on_b_acc_btn_clicked()
 
         if (query.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("管理员同意读者借阅请求！"));
-            borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员同意读者借阅请求！"));
+            borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
             borrow_manage_model->select();
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没法更新读者借阅请求！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没法更新读者借阅请求！"));
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("当前没有读者的借阅请求！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("当前没有读者的借阅请求！"));
 }
 
 
@@ -327,8 +327,8 @@ void AdminForm::on_b_refu_btn_clicked()
 
         if (query_delete.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("管理员拒绝读者借阅请求！"));
-            borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员拒绝读者借阅请求！"));
+            borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
             borrow_manage_model->select();
 
             query_update.prepare("update book set bnum = :bnum where bno = :bno");
@@ -338,16 +338,16 @@ void AdminForm::on_b_refu_btn_clicked()
 
             if (query_update.isActive())
             {
-                QMessageBox::information(this, tr("提示"), tr("更新图书表成功！"));
-                book_manage_model->setFilter(QObject::tr("bno like '%'"));
+                QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("更新图书表成功！"));
+                book_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
                 book_manage_model->select();
             }
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没法删除读者借阅请求"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没法删除读者借阅请求"));
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("当前没有读者的借阅请求！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("当前没有读者的借阅请求！"));
 }
 
 
@@ -368,7 +368,7 @@ void AdminForm::on_c_fresh_btn_clicked()
         ui->c_bno_le->setText(book_id);
     }
     else
-        QMessageBox::information(this, tr("提示"), tr("读者没有续借请求"));
+        QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("读者没有续借请求"));
 }
 
 
@@ -389,7 +389,7 @@ void AdminForm::on_r_fresh_btn_clicked()
         ui->r_bno_le->setText(book_id);
     }
     else
-        QMessageBox::information(this, tr("提示"), tr("读者没有还书请求"));
+        QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("读者没有还书请求"));
 }
 
 
@@ -408,7 +408,7 @@ void AdminForm::on_c_acc_btn_clicked()
 
     if (!query.next())
     {
-        QMessageBox::warning(this, tr("警告"), tr("借阅表中没有对应的读者续借请求！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅表中没有对应的读者续借请求！"));
         return ;
     }
 
@@ -425,12 +425,12 @@ void AdminForm::on_c_acc_btn_clicked()
 
         if (query_update.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("管理员同意读者续借请求！"));
-            borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员同意读者续借请求！"));
+            borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
             borrow_manage_model->select();
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没法更新读者续借请求"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没法更新读者续借请求"));
     }
 }
 
@@ -453,7 +453,7 @@ void AdminForm::on_c_refu_btn_clicked()
 
     if (!query.next())
     {
-        QMessageBox::warning(this, tr("警告"), tr("借阅表中没有对应的读者续借请求！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅表中没有对应的读者续借请求！"));
         return ;
     }
 
@@ -476,12 +476,12 @@ void AdminForm::on_c_refu_btn_clicked()
 
         if (query_update.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("管理员拒绝读者续借请求！"));
-            borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员拒绝读者续借请求！"));
+            borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
             borrow_manage_model->select();
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没法更新读者续借请求！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没法更新读者续借请求！"));
     }
 }
 
@@ -503,7 +503,7 @@ void AdminForm::on_r_acc_btn_clicked()
 
     if (!query.next())
     {
-        QMessageBox::warning(this, tr("警告"), tr("借阅表中没有对应的读者还书请求！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅表中没有对应的读者还书请求！"));
         return ;
     }
 
@@ -528,8 +528,8 @@ void AdminForm::on_r_acc_btn_clicked()
 
         if (query_update.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("管理员同意读者还书请求！"));
-            borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员同意读者还书请求！"));
+            borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
             borrow_manage_model->select();
 
             query_update.prepare("update book set bnum = :bnum where bno = :bno");
@@ -539,13 +539,13 @@ void AdminForm::on_r_acc_btn_clicked()
 
             if (query_update.isActive())
             {
-                QMessageBox::information(this, tr("提示"), tr("更新图书表成功！"));
-                book_manage_model->setFilter(QObject::tr("bno like '%'"));
+                QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("更新图书表成功！"));
+                book_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
                 book_manage_model->select();
             }
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没法更新读者还书请求"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没法更新读者还书请求"));
     }
 }
 
@@ -566,7 +566,7 @@ void AdminForm::on_r_refu_btn_clicked()
 
     if (!query.next())
     {
-        QMessageBox::warning(this, tr("警告"), tr("借阅表中没有对应的读者还书请求！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅表中没有对应的读者还书请求！"));
         return ;
     }
 
@@ -585,12 +585,12 @@ void AdminForm::on_r_refu_btn_clicked()
 
         if (query_update.isActive())
         {
-            QMessageBox::information(this, tr("提示"), tr("管理员拒绝读者还书请求！"));
-            borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("管理员拒绝读者还书请求！"));
+            borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
             borrow_manage_model->select();
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没法更新读者还书请求"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没法更新读者还书请求"));
     }
 }
 
@@ -607,9 +607,9 @@ void AdminForm::on_quit_btn_clicked()
 
 void AdminForm::on_fresh_btn_clicked()
 {
-    borrow_manage_model->setFilter(QObject::tr("bno like '%'"));
+    borrow_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
     borrow_manage_model->select();
 
-    book_manage_model->setFilter(QObject::tr("bno like '%'"));
+    book_manage_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
     book_manage_model->select();
 }

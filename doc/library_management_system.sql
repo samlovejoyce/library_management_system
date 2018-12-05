@@ -1,4 +1,6 @@
-create database library;
+﻿create database if not exists booklibrary;
+
+use booklibrary;
 
 create table book(
     bno     char(7) primary key,
@@ -12,7 +14,7 @@ create table book(
     references admin(ano)
 )
 engine = InnoDB
-character set gb2312 collate gb2312_chinese_ci;
+character set utf8 collate utf8_general_ci;
 
 create table reader(
     rno   varchar(20) primary key,
@@ -26,18 +28,18 @@ create table reader(
     references admin(ano)
 )
 engine = InnoDB
-character set gb2312 collate gb2312_chinese_ci;
+character set utf8 collate utf8_general_ci;
 
 create table admin(
     ano     varchar(50),
     aname   varchar(20),
-    asex    char(3) '密',
+    asex    char(3) default '密',
     akey    varchar(20),
     atel    varchar(15),
     acareer varchar(20)
 )
 engine = InnoDB
-character set gb2312 collate gb2312_chinese_ci;
+character set utf8 collate utf8_general_ci;
 
 create table type(
     tno   char(3),
@@ -45,7 +47,7 @@ create table type(
     tloc  varchar(50)
 )
 engine = InnoDB
-character set gb2312 collate gb2312_chinese_ci;
+character set utf8 collate utf8_general_ci;
 
 create table borrow(
     rno   varchar(20),
@@ -59,7 +61,11 @@ create table borrow(
     references book(bno)
 )
 engine = InnoDB
-character set gb2312 collate gb2312_chinese_ci;
+character set utf8 collate utf8_general_ci;
+
+-- 为borrow关联外键 --
+alter table borrow add constraint fk_rno foreign key borrow(rno) references reader(rno);
+alter table borrow add constraint fk_bno foreign key borrow(bno) references book(bno);
 
 alter table reader add constraint uk_rno unique(rno);
 alter table book add constraint uk_bno unique(bno);

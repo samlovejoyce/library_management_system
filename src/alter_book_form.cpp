@@ -1,4 +1,4 @@
-#include "alter_book_form.h"
+﻿#include "alter_book_form.h"
 #include "ui_alter_book_form.h"
 #include <QMessageBox>
 #include <QString>
@@ -10,7 +10,7 @@ AlterBookForm::AlterBookForm(QWidget *parent) :
     ui(new Ui::AlterBookForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("修改图书信息界面");
+    this->setWindowTitle(QString::fromLocal8Bit("修改图书信息界面"));
 }
 
 
@@ -40,7 +40,7 @@ void AlterBookForm::displayAllInformation(QString data)
         ui->bnum_le->setText(query.value(5).toString());
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("没有有关此书的相关信息！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没有有关此书的相关信息！"));
 }
 
 
@@ -76,15 +76,15 @@ void AlterBookForm::on_ensure_btn_clicked()
 
         if (query.isActive())
         {
-            QMessageBox::information(this, tr("信息"), tr("图书信息修改成功！"));
+            QMessageBox::information(this, QString::fromLocal8Bit("信息"), QString::fromLocal8Bit("图书信息修改成功！"));
             this->close();
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("图书信息修改失败！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("图书信息修改失败！"));
     }
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("图书号不能修改！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("图书号不能修改！"));
         ui->bno_le->setText(book_id_global);
     }
 }

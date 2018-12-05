@@ -1,4 +1,4 @@
-#include "reader_form.h"
+﻿#include "reader_form.h"
 #include "ui_reader_form.h"
 #include "user_login.h"
 #include "admin_form.h"
@@ -23,7 +23,7 @@ ReaderForm::ReaderForm(QWidget *parent) :
     ui(new Ui::ReaderForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("读者界面");
+    this->setWindowTitle(QString::fromLocal8Bit("读者界面"));
 
     ui->reader_tw->setCurrentIndex(0);
     ui->bname_le->setEnabled(false);
@@ -36,13 +36,13 @@ ReaderForm::ReaderForm(QWidget *parent) :
     book_query_model = new QSqlQueryModel(this);
     book_query_model->setQuery("select" + properties + "from" + tables +
                                "where btno = tno");
-    book_query_model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-    book_query_model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-    book_query_model->setHeaderData(2, Qt::Horizontal, tr("图书类别"));
-    book_query_model->setHeaderData(3, Qt::Horizontal, tr("出版社"));
-    book_query_model->setHeaderData(4, Qt::Horizontal, tr("作者"));
-    book_query_model->setHeaderData(5, Qt::Horizontal, tr("馆藏量"));
-    book_query_model->setHeaderData(6, Qt::Horizontal, tr("位置"));
+    book_query_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    book_query_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+    book_query_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("图书类别"));
+    book_query_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+    book_query_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+    book_query_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
+    book_query_model->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("位置"));
 
     ui->book_tv->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->book_tv->setModel(book_query_model);
@@ -51,11 +51,11 @@ ReaderForm::ReaderForm(QWidget *parent) :
     book_borrow_model = new QSqlTableModel(this);
     book_borrow_model->setTable("book");
     book_borrow_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    book_borrow_model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-    book_borrow_model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-    book_borrow_model->setHeaderData(2, Qt::Horizontal, tr("出版社"));
-    book_borrow_model->setHeaderData(3, Qt::Horizontal, tr("作者"));
-    book_borrow_model->setHeaderData(4, Qt::Horizontal, tr("馆藏量"));
+    book_borrow_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    book_borrow_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+    book_borrow_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+    book_borrow_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+    book_borrow_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
     book_borrow_model->removeColumn(book_borrow_model->fieldIndex("btno"));
     book_borrow_model->removeColumn(book_borrow_model->fieldIndex("ano"));
     book_borrow_model->select();
@@ -94,18 +94,18 @@ void ReaderForm::timerUpdateView()
 //    book_query_model = new QSqlQueryModel(this);
 //    book_query_model->setQuery("select" + properties + "from" + tables +
 //                               "where btno = tno");
-//    book_query_model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-//    book_query_model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-//    book_query_model->setHeaderData(2, Qt::Horizontal, tr("图书类别"));
-//    book_query_model->setHeaderData(3, Qt::Horizontal, tr("出版社"));
-//    book_query_model->setHeaderData(4, Qt::Horizontal, tr("作者"));
-//    book_query_model->setHeaderData(5, Qt::Horizontal, tr("馆藏量"));
-//    book_query_model->setHeaderData(6, Qt::Horizontal, tr("位置"));
+//    book_query_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+//    book_query_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+//    book_query_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("图书类别"));
+//    book_query_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+//    book_query_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+//    book_query_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
+//    book_query_model->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("位置"));
 //    ui->book_tv->setEditTriggers(QAbstractItemView::NoEditTriggers);
 //    ui->book_tv->setModel(book_query_model);
 //    ui->book_tv->show();
 
-    book_borrow_model->setFilter(QObject::tr("bno like '%'"));
+    book_borrow_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
     book_borrow_model->select();
 }
 
@@ -194,13 +194,13 @@ void ReaderForm::on_search_btn_clicked()
         model->setQuery("select" + properties + "from" + tables +
                         "where btno = tno and bauthor like '" + book_author + "%'");
 
-    model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-    model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-    model->setHeaderData(2, Qt::Horizontal, tr("图书类别"));
-    model->setHeaderData(3, Qt::Horizontal, tr("出版社"));
-    model->setHeaderData(4, Qt::Horizontal, tr("作者"));
-    model->setHeaderData(5, Qt::Horizontal, tr("馆藏量"));
-    model->setHeaderData(6, Qt::Horizontal, tr("位置"));
+    model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+    model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("图书类别"));
+    model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+    model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+    model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
+    model->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("位置"));
 
     ui->book_tv->setModel(model);
     ui->book_tv->show();
@@ -212,13 +212,13 @@ void ReaderForm::on_dis_all_btn_clicked()
     QSqlQueryModel *model = new QSqlQueryModel;
     model->setQuery("select" + properties + "from" + tables +
                           "where btno = tno");
-    model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-    model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-    model->setHeaderData(2, Qt::Horizontal, tr("图书类别"));
-    model->setHeaderData(3, Qt::Horizontal, tr("出版社"));
-    model->setHeaderData(4, Qt::Horizontal, tr("作者"));
-    model->setHeaderData(5, Qt::Horizontal, tr("馆藏量"));
-    model->setHeaderData(6, Qt::Horizontal, tr("位置"));
+    model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+    model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("图书类别"));
+    model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+    model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+    model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
+    model->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("位置"));
 
     ui->book_tv->setModel(model);
     ui->book_tv->show();
@@ -243,13 +243,13 @@ void ReaderForm::on_locate_btn_clicked()
     QSqlQueryModel *model = new QSqlQueryModel;
     model->setQuery("select" + properties + "from" + tables +
                     "where btno = tno and bno = '" + book_id + "'");
-    model->setHeaderData(0, Qt::Horizontal, tr("图书号"));
-    model->setHeaderData(1, Qt::Horizontal, tr("图书名"));
-    model->setHeaderData(2, Qt::Horizontal, tr("图书类别"));
-    model->setHeaderData(3, Qt::Horizontal, tr("出版社"));
-    model->setHeaderData(4, Qt::Horizontal, tr("作者"));
-    model->setHeaderData(5, Qt::Horizontal, tr("馆藏量"));
-    model->setHeaderData(6, Qt::Horizontal, tr("位置"));
+    model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("图书号"));
+    model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("图书名"));
+    model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("图书类别"));
+    model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("出版社"));
+    model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("作者"));
+    model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("馆藏量"));
+    model->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("位置"));
 
     ui->book_tv->setModel(model);
     ui->book_tv->show();
@@ -311,7 +311,7 @@ void ReaderForm::on_add_btn_clicked()
 
     if (ui->borrow_tv->currentIndex().row() < 0)
     {
-        QMessageBox::warning(this, tr("提示"), tr("请添加书籍！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("请添加书籍！"));
         return ;
     }
 
@@ -377,7 +377,7 @@ void ReaderForm::on_add_btn_clicked()
     }
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("书的总数量超过馆藏容量！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("书的总数量超过馆藏容量！"));
         book_num_all = book_num_all - 1;
     }
 }
@@ -454,15 +454,15 @@ void ReaderForm::on_add_btn_2_clicked()
             }
             else
             {
-                QMessageBox::warning(this, tr("警告"), tr("书的总数量超过馆藏容量！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("书的总数量超过馆藏容量！"));
                 book_num_all = book_num_all - book_num_in;
             }
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没有对应的图书号！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没有对应的图书号！"));
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("书号或数量不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("书号或数量不能为空！"));
 }
 
 
@@ -506,12 +506,12 @@ void ReaderForm::on_done_btn_clicked()
 
     if (reader_id.isEmpty() || reader_pwd.isEmpty())
     {
-        QMessageBox::warning(this, tr("警告"), tr("读者号或密码不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者号或密码不能为空！"));
         return ;
     }
     if (row == 0)
     {
-        QMessageBox::warning(this, tr("警告"), tr("请选择需要借阅的书！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("请选择需要借阅的书！"));
         return ;
     }
 
@@ -562,13 +562,13 @@ void ReaderForm::on_done_btn_clicked()
                 if (query_insert.isActive())
                 {
                     insert_success_flag = 1;
-//                    QMessageBox::information(this,tr("提示"), tr("借阅请求申请成功！"));
+//                    QMessageBox::information(this,QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("借阅请求申请成功！"));
                     book_num--;
                 }
                 else
                 {
                     insert_success_flag = 0;
-//                    QMessageBox::warning(this, tr("警告"), tr("借阅请求申请失败！"));
+//                    QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅请求申请失败！"));
                     return ;
                 }
                 query_update.prepare("update book set bnum = :bnum where bno = :bno");
@@ -579,34 +579,34 @@ void ReaderForm::on_done_btn_clicked()
                 if (query_update.isActive())
                 {
                     update_success_flag = 1;
-//                    QMessageBox::information(this, tr("提示"), tr("更新图书数据表成功！"));
+//                    QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("更新图书数据表成功！"));
                 }
                 else
                 {
                     update_success_flag = 0;
-//                    QMessageBox::warning(this, tr("警告"), tr("更新图书数据表失败！"));
+//                    QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("更新图书数据表失败！"));
                 }
             }
             book_id_order.clear();
             if (insert_success_flag == 1)
-                QMessageBox::information(this,tr("提示"), tr("借阅请求申请成功！"));
+                QMessageBox::information(this,QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("借阅请求申请成功！"));
             else
-                QMessageBox::warning(this, tr("警告"), tr("借阅请求申请失败！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅请求申请失败！"));
             if (update_success_flag == 1)
-                QMessageBox::information(this, tr("提示"), tr("更新图书数据表成功！"));
+                QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("更新图书数据表成功！"));
             else
-                QMessageBox::warning(this, tr("警告"), tr("更新图书数据表失败！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("更新图书数据表失败！"));
         }
         else
         {
-            QMessageBox::warning(this, tr("警告"), tr("密码错误！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("密码错误！"));
             return ;
         }
     }
     else
-        QMessageBox::warning(this, tr("警告"), tr("读者身份验证失败！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者身份验证失败！"));
 
-    book_borrow_model->setFilter(QObject::tr("bno like '%'"));
+    book_borrow_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
     book_borrow_model->select();
 }
 
@@ -624,7 +624,7 @@ void ReaderForm::on_accept_btn_clicked()
 
     if (reader_id.isEmpty() || book_id.isEmpty())
     {
-        QMessageBox::warning(this, tr("警告"), tr("读者号或书号不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者号或书号不能为空！"));
         return ;
     }
 
@@ -635,7 +635,7 @@ void ReaderForm::on_accept_btn_clicked()
 
     if (!query.next())
     {
-        QMessageBox::warning(this, tr("警告"), tr("借阅表中没有对应的读者图书信息！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅表中没有对应的读者图书信息！"));
         return ;
     }
 
@@ -659,7 +659,7 @@ void ReaderForm::on_accept_btn_clicked()
 
         if (flag == "同意续借请求")
         {
-            QMessageBox::information(this, tr("提示"), tr("已经续借过一次，没法再次续借！"));
+            QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("已经续借过一次，没法再次续借！"));
             return ;
         }
 
@@ -669,7 +669,7 @@ void ReaderForm::on_accept_btn_clicked()
             {
                 if (days > 0)
                 {
-                    QMessageBox::information(this, tr("提示"), tr("没有超过截止期限，无法续借"));
+                    QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("没有超过截止期限，无法续借"));
                     return ;
                 }
                 else if ((days <= 0) && (days >= -5))
@@ -687,20 +687,20 @@ void ReaderForm::on_accept_btn_clicked()
 
                     if (query.isActive())
                     {
-                        QMessageBox::information(this, tr("提示"), tr("续借请求申请成功！"));
+                        QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("续借请求申请成功！"));
                         renew_num_map[book_id] = 1;
                     }
                     else
-                        QMessageBox::warning(this, tr("警告"), tr("续借请求申请失败！"));
+                        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("续借请求申请失败！"));
                 }
                 else
-                    QMessageBox::warning(this, tr("警告"), tr("已超过截止期限5天，无法续借！"));
+                    QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("已超过截止期限5天，无法续借！"));
             }
             else
-                QMessageBox::warning(this, tr("警告"), tr("已经续借过一次，没法再次续借！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("已经续借过一次，没法再次续借！"));
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没有读者已经借阅的信息！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没有读者已经借阅的信息！"));
     }
 }
 
@@ -727,7 +727,7 @@ void ReaderForm::on_accept_btn_2_clicked()
 
     if (reader_id.isEmpty() || book_id.isEmpty())
     {
-        QMessageBox::warning(this, tr("警告"), tr("读者号或书号不能为空！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者号或书号不能为空！"));
         return ;
     }
 
@@ -738,7 +738,7 @@ void ReaderForm::on_accept_btn_2_clicked()
 
     if (!query.next())
     {
-        QMessageBox::warning(this, tr("警告"), tr("借阅表中没有对应的读者图书信息！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("借阅表中没有对应的读者图书信息！"));
         return ;
     }
 
@@ -765,12 +765,12 @@ void ReaderForm::on_accept_btn_2_clicked()
             query.exec();
 
             if (query.isActive())
-                QMessageBox::information(this, tr("提示"), tr("还书请求申请成功！"));
+                QMessageBox::information(this, QString::fromLocal8Bit("提示"), QString::fromLocal8Bit("还书请求申请成功！"));
             else
-                QMessageBox::warning(this, tr("警告"), tr("还书请求申请失败！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("还书请求申请失败！"));
         }
         else
-            QMessageBox::warning(this, tr("警告"), tr("没有读者已借阅或续借的信息！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("没有读者已借阅或续借的信息！"));
     }
 }
 
@@ -794,6 +794,6 @@ void ReaderForm::on_quit_btn_clicked()
 
 void ReaderForm::on_fresh_btn_clicked()
 {
-    book_borrow_model->setFilter(QObject::tr("bno like '%'"));
+    book_borrow_model->setFilter(QString::fromLocal8Bit("bno like '%'"));
     book_borrow_model->select();
 }

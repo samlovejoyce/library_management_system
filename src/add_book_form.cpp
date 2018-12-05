@@ -1,4 +1,4 @@
-#include "add_book_form.h"
+﻿#include "add_book_form.h"
 #include "ui_add_book_form.h"
 #include <QMessageBox>
 #include <QString>
@@ -47,7 +47,7 @@ void AddBookForm::on_ensure_btn_clicked()
         {
             if (book_print != "" && book_author != "" && book_number != "")
             {
-                query.prepare(tr("insert into book values(:id, :name, :type, :author, :print, :num, :admin)"));
+                query.prepare(QString::fromLocal8Bit("insert into book values(:id, :name, :type, :author, :print, :num, :admin)"));
                 query.bindValue(":id", book_id);
                 query.bindValue(":name", book_name);
                 query.bindValue(":type", book_type);
@@ -60,18 +60,18 @@ void AddBookForm::on_ensure_btn_clicked()
                 if (query.isActive())
                 {
                     query.numRowsAffected();
-                    QMessageBox::information(this, tr("信息"), tr("数据插入成功！"));
+                    QMessageBox::information(this, QString::fromLocal8Bit("信息"), QString::fromLocal8Bit("数据插入成功！"));
                 }
             }
             else
-                QMessageBox::warning(this, tr("警告"), tr("出版社、作者、图书数量不能为空！"));
+                QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("出版社、作者、图书数量不能为空！"));
             }
         else
-            QMessageBox::warning(this, tr("警告"), tr("书号、书名、书类型不能为空！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("书号、书名、书类型不能为空！"));
     }
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("图书号是唯一的，不能重复！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("图书号是唯一的，不能重复！"));
         return ;
     }
 }

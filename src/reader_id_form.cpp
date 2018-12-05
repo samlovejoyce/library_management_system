@@ -1,4 +1,4 @@
-#include "reader_id_form.h"
+﻿#include "reader_id_form.h"
 #include "ui_reader_id_form.h"
 #include "alter_reader_form.h"
 #include <QMessageBox>
@@ -12,7 +12,7 @@ ReaderIDForm::ReaderIDForm(QWidget *parent) :
     ui(new Ui::ReaderIDForm)
 {
     ui->setupUi(this);
-    this->setWindowTitle("读者账号输入界面");
+    this->setWindowTitle(QString::fromLocal8Bit("读者账号输入界面"));
 }
 
 
@@ -42,7 +42,7 @@ void ReaderIDForm::on_ensure_btn_clicked()
         this->close();
     }
     else
-        QMessageBox::warning(this, tr("错误"), tr("没有这个读者号，不能修改！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("错误"), QString::fromLocal8Bit("没有这个读者号，不能修改！"));
 }
 
 

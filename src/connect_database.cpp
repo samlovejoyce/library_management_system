@@ -20,10 +20,10 @@ ConnectDatabase::~ConnectDatabase()
 bool ConnectDatabase::openDatabase()
 {
 
-    db.setHostName("localhost");
-    db.setDatabaseName("library");
+    db.setHostName("10.81.22.17");
+    db.setDatabaseName("booklibrary");
     db.setUserName("root");
-    db.setPassword("root");
+    db.setPassword("123456");
     db.setPort(3306);
 
     if (!db.open())

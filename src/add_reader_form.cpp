@@ -1,4 +1,4 @@
-#include "add_reader_form.h"
+﻿#include "add_reader_form.h"
 #include "ui_add_reader_form.h"
 #include <QMessageBox>
 #include <QString>
@@ -43,7 +43,7 @@ void AddReaderForm::on_ensure_btn_clicked()
     {
         if (reader_id != "" && reader_name != "" && reader_tel != "" && reader_key != "")
         {
-                query.prepare(tr("insert into reader values(:id, :name, :tel, :key, :sex, :admin)"));
+                query.prepare(QString::fromLocal8Bit("insert into reader values(:id, :name, :tel, :key, :sex, :admin)"));
                 query.bindValue(":id", reader_id);
                 query.bindValue(":name", reader_name);
                 query.bindValue(":tel", reader_tel);
@@ -55,15 +55,15 @@ void AddReaderForm::on_ensure_btn_clicked()
                 if (query.isActive())
                 {
                     query.numRowsAffected();
-                    QMessageBox::information(this, tr("信息"), tr("数据插入成功！"));
+                    QMessageBox::information(this, QString::fromLocal8Bit("信息"), QString::fromLocal8Bit("数据插入成功！"));
                 }
             }
         else
-            QMessageBox::warning(this, tr("警告"), tr("读者号、密码、姓名、电话不能为空！"));
+            QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者号、密码、姓名、电话不能为空！"));
     }
     else
     {
-        QMessageBox::warning(this, tr("警告"), tr("读者号号是唯一的，不能重复！"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit("读者号号是唯一的，不能重复！"));
         return ;
     }
 }
