@@ -49,7 +49,7 @@ void UserLogin::on_login_btn_clicked()
     {
         if (user_type == QString::fromLocal8Bit("管理员"))
         {
-            query.exec("select * from admin");
+            query.exec("select * from managers");
             while (query.next())
             {
                 if (query.value(0).toString() == user_account)
@@ -60,10 +60,8 @@ void UserLogin::on_login_btn_clicked()
                             AdminForm  *admin = new AdminForm();
                             flag = true;
                             admin->show();
-                            admin->move((QApplication::desktop()->width() -
-                                         admin->width()) / 2,
-                                        (QApplication::desktop()->height() -
-                                         admin->height()) / 2);
+                            admin->move((QApplication::desktop()->width() -  admin->width()) / 2,
+                                        (QApplication::desktop()->height() - admin->height()) / 2);
     //                        this->hide();
                               admin_counter++;
                               counter++;
@@ -92,10 +90,8 @@ void UserLogin::on_login_btn_clicked()
                             ReaderForm *reader = new ReaderForm();
                             flag = true;
                             reader->show();
-                            reader->move((QApplication::desktop()->width() -
-                                          reader->width()) / 2,
-                                         (QApplication::desktop()->height() -
-                                          reader->height()) / 2);
+                            reader->move((QApplication::desktop()->width() - reader->width()) / 2,
+                                         (QApplication::desktop()->height() - reader->height()) / 2);
     //                        this->hide();
                             reader_counter++;
                             counter++;
@@ -127,8 +123,6 @@ void UserLogin::on_reg_btn_clicked()
 {
     UserRegisterForm *user_register = new UserRegisterForm();
     user_register->show();
-    user_register->move((QApplication::desktop()->width() -
-                         user_register->width()) / 2,
-                        (QApplication::desktop()->height() -
-                         user_register->height()) / 2);
+    user_register->move((QApplication::desktop()->width() -  user_register->width()) / 2,
+                        (QApplication::desktop()->height() - user_register->height()) / 2);
 }

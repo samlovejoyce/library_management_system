@@ -47,14 +47,14 @@ void AddBookForm::on_ensure_btn_clicked()
         {
             if (book_print != "" && book_author != "" && book_number != "")
             {
-                query.prepare(QString::fromLocal8Bit("insert into book values(:id, :name, :type, :author, :print, :num, :admin)"));
+                query.prepare(QString::fromLocal8Bit("insert into book values(:id, :name, :type, :author, :print, :num, :namagers)"));
                 query.bindValue(":id", book_id);
                 query.bindValue(":name", book_name);
                 query.bindValue(":type", book_type);
                 query.bindValue(":author", book_author);
                 query.bindValue(":print", book_print);
                 query.bindValue(":num", book_number);
-                query.bindValue(":admin", book_admin);
+                query.bindValue(":namagers", book_admin);
                 query.exec();
 
                 if (query.isActive())

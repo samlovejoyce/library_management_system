@@ -43,13 +43,13 @@ void AddReaderForm::on_ensure_btn_clicked()
     {
         if (reader_id != "" && reader_name != "" && reader_tel != "" && reader_key != "")
         {
-                query.prepare(QString::fromLocal8Bit("insert into reader values(:id, :name, :tel, :key, :sex, :admin)"));
+                query.prepare(QString::fromLocal8Bit("insert into reader values(:id, :name, :tel, :key, :sex, :namagers)"));
                 query.bindValue(":id", reader_id);
                 query.bindValue(":name", reader_name);
                 query.bindValue(":tel", reader_tel);
                 query.bindValue(":key", reader_key);
                 query.bindValue(":sex", reader_sex);
-                query.bindValue(":admin", reader_admin);
+                query.bindValue(":namagers", reader_admin);
                 query.exec();
 
                 if (query.isActive())

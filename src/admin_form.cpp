@@ -49,12 +49,13 @@ AdminForm::AdminForm(QWidget *parent) :
     reader_manage_model = new QSqlTableModel(this);
     reader_manage_model->setTable("reader");
     reader_manage_model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    reader_manage_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("读者帐号"));
-    reader_manage_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("读者姓名"));
-    reader_manage_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("读者密码"));
-    reader_manage_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("读者电话"));
-    reader_manage_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("读者性别"));
-    reader_manage_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("管理员号"));
+	reader_manage_model->setHeaderData(0, Qt::Horizontal, QString::fromLocal8Bit("读者帐号"));
+	reader_manage_model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("读者姓名"));
+	reader_manage_model->setHeaderData(2, Qt::Horizontal, QString::fromLocal8Bit("读者密码"));
+	reader_manage_model->setHeaderData(3, Qt::Horizontal, QString::fromLocal8Bit("读者电话"));
+	reader_manage_model->setHeaderData(4, Qt::Horizontal, QString::fromLocal8Bit("读者年龄"));
+	reader_manage_model->setHeaderData(5, Qt::Horizontal, QString::fromLocal8Bit("读者性别"));
+	reader_manage_model->setHeaderData(6, Qt::Horizontal, QString::fromLocal8Bit("管理员号"));
     reader_manage_model->select();
 
     ui->reader_tw->setEditTriggers(QAbstractItemView::NoEditTriggers);

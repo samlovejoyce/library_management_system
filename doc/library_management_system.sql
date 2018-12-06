@@ -2,6 +2,17 @@
 
 use booklibrary;
 
+create table admin(
+    ano     varchar(50),
+    aname   varchar(20),
+    asex    char(3) default '密',
+    akey    varchar(20),
+    atel    varchar(15),
+    acareer varchar(20)
+)
+engine = InnoDB
+character set utf8 collate utf8_general_ci;
+
 create table book(
     bno     char(7) primary key,
     bname   varchar(50),
@@ -30,16 +41,6 @@ create table reader(
 engine = InnoDB
 character set utf8 collate utf8_general_ci;
 
-create table admin(
-    ano     varchar(50),
-    aname   varchar(20),
-    asex    char(3) default '密',
-    akey    varchar(20),
-    atel    varchar(15),
-    acareer varchar(20)
-)
-engine = InnoDB
-character set utf8 collate utf8_general_ci;
 
 create table type(
     tno   char(3),
@@ -63,13 +64,6 @@ create table borrow(
 engine = InnoDB
 character set utf8 collate utf8_general_ci;
 
--- 为borrow关联外键 --
-alter table borrow add constraint fk_rno foreign key borrow(rno) references reader(rno);
-alter table borrow add constraint fk_bno foreign key borrow(bno) references book(bno);
-
-alter table reader add constraint uk_rno unique(rno);
-alter table book add constraint uk_bno unique(bno);
-alter table admin add constraint uk_ano unique(ano);
 
 create view borrow_view(rno, bno, bname, bprint, bauthor, sdate, rdate)
 as select

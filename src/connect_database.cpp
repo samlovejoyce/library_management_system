@@ -13,18 +13,17 @@ ConnectDatabase::ConnectDatabase()
 
 ConnectDatabase::~ConnectDatabase()
 {
-
+	closeDatabase();
 }
 
 // Open the Database
 bool ConnectDatabase::openDatabase()
 {
-
-    db.setHostName("10.81.22.17");
-    db.setDatabaseName("booklibrary");
+    db.setHostName("localhost");
     db.setUserName("root");
     db.setPassword("123456");
     db.setPort(3306);
+    db.setDatabaseName("booklibrarymgr");
 
     if (!db.open())
         return false;
